@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useRef } from "react"
-import Blog from "./components/Blog"
-import Notification from "./components/Notification"
-import Togglable from "./components/Togglable"
-import BlogForm from "./components/BlogForm"
-import blogService from "./services/blogs"
-import loginService from "./services/login"
-import LoginForm from "./components/LoginForm"
+import React, { useState, useEffect, useRef } from 'react'
+import Blog from './components/Blog'
+import Notification from './components/Notification'
+import Togglable from './components/Togglable'
+import BlogForm from './components/BlogForm'
+import blogService from './services/blogs'
+import loginService from './services/login'
+import LoginForm from './components/LoginForm'
 
 const App = () => {
   const blogFormRef = useRef()
   const [blogs, setBlogs] = useState([])
   const [notification, setNotification] = useState(null)
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem("loggedBlogappUser")
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -36,12 +36,12 @@ const App = () => {
         username,
         password,
       })
-      window.localStorage.setItem("loggedBlogappUser", JSON.stringify(user))
+      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
       setUser(user)
-      setUsername("")
-      setPassword("")
+      setUsername('')
+      setPassword('')
     } catch (exception) {
-      setNotification({ text: "Wrong username or password", type: "error" })
+      setNotification({ text: 'Wrong username or password', type: 'error' })
       setTimeout(() => {
         setNotification(null)
       }, 5000)
@@ -49,7 +49,7 @@ const App = () => {
   }
 
   const handleLogout = () => {
-    window.localStorage.removeItem("loggedBlogappUser")
+    window.localStorage.removeItem('loggedBlogappUser')
     setUser(null)
   }
 
@@ -59,7 +59,7 @@ const App = () => {
       setBlogs([...blogs, returnedBlog])
       setNotification({
         text: `A new blog "${returnedBlog.title}" by ${returnedBlog.author} added`,
-        type: "success",
+        type: 'success',
       })
 
       setTimeout(() => {
@@ -84,7 +84,7 @@ const App = () => {
       ) : (
         <div>
           <p>
-            {user.name} logged in{" "}
+            {user.name} logged in{' '}
             <button onClick={handleLogout}>Log out</button>
           </p>
           <Togglable buttonLabel="New blog" ref={blogFormRef}>

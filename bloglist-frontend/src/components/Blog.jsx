@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import blogService from "../services/blogs"
+import React, { useState } from 'react'
+import blogService from '../services/blogs'
 
 const Blog = ({ blog }) => {
   const [showDetails, setShowDetails] = useState(false)
@@ -16,12 +16,12 @@ const Blog = ({ blog }) => {
       })
       setLikes(updatedBlog.likes)
     } catch (error) {
-      console.error("Error liking the blog:", error)
+      console.error('Error liking the blog:', error)
     }
   }
 
   const handleDelete = async () => {
-    if (window.confirm("Do you really want to delete this blog?")) {
+    if (window.confirm('Do you really want to delete this blog?')) {
       try {
         await blogService.deleteBlog(blog.id)
         window.location.reload()
@@ -33,7 +33,7 @@ const Blog = ({ blog }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
-    border: "solid",
+    border: 'solid',
     borderWidth: 1,
     marginBottom: 5,
   }
@@ -41,9 +41,9 @@ const Blog = ({ blog }) => {
   return (
     <div style={blogStyle}>
       <div>
-        {blog.title} {blog.author}{" "}
+        {blog.title} {blog.author}{' '}
         <button onClick={toggleDetails}>
-          {showDetails ? "Hide" : "View"} Details
+          {showDetails ? 'Hide' : 'View'} Details
         </button>
       </div>
       {showDetails && (

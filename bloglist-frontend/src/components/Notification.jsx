@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 const Notification = ({ message }) => {
   if (message === null) {
@@ -6,7 +6,7 @@ const Notification = ({ message }) => {
   }
 
   return (
-    <div className={message.type === "error" ? "error" : "success"}>
+    <div className={message.type === 'error' ? 'error' : 'success'}>
       {message.text}
     </div>
   )
