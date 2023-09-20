@@ -24,12 +24,12 @@ const Blog = ({ blog }) => {
     if (window.confirm('Do you really want to delete this blog?')) {
       try {
         await blogService.deleteBlog(blog.id)
-        window.location.reload()
       } catch (error) {
         console.error(error)
       }
     }
   }
+
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -40,8 +40,8 @@ const Blog = ({ blog }) => {
 
   return (
     <div style={blogStyle}>
-      <div>
-        {blog.title} {blog.author}{' '}
+      <div className="blog">
+        {blog.title} {blog.author}
         <button onClick={toggleDetails}>
           {showDetails ? 'Hide' : 'View'} Details
         </button>
@@ -50,7 +50,9 @@ const Blog = ({ blog }) => {
         <div>
           {blog.url}
           <br />
-          {blog.likes} likes <button onClick={handleLike}>Like</button>
+          <span>
+            {blog.likes} likes <button onClick={handleLike}>Like</button>
+          </span>
           <br />
           {blog.user.username}
           {blog.user && blog.user.username === blog.user.username && (
