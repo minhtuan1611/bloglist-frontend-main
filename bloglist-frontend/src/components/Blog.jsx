@@ -11,6 +11,7 @@ const Blog = ({ blog }) => {
 
   const handleLike = async () => {
     try {
+      blog.likes = blog.likes + 1
       const updatedBlog = await blogService.update(blog.id, {
         likes: likes + 1,
       })
@@ -24,6 +25,7 @@ const Blog = ({ blog }) => {
     if (window.confirm('Do you really want to delete this blog?')) {
       try {
         await blogService.deleteBlog(blog.id)
+        window.location.reload()
       } catch (error) {
         console.error(error)
       }
